@@ -1,6 +1,6 @@
 import './alias/index.js';
-import repository from '@/repository';
+import Repository from '@/repository';
 
 export {
-    repository
+    Repository
 }

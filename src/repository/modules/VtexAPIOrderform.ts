@@ -7,9 +7,11 @@ import defaultHeader from '../defaultHeader';
 
 export default class VtexAPIOrderform implements IVtexApiOrderForm {
     axios:AxiosInstance
+    orderFormId: string | null
   
-    constructor(axios: AxiosInstance) {
+    constructor(axios: AxiosInstance, orderFormId?:string) {
         this.axios = axios;
+        this.orderFormId = orderFormId || null;
     }
     
     async get(): Promise<IOrderForm>{
@@ -17,8 +19,20 @@ export default class VtexAPIOrderform implements IVtexApiOrderForm {
         const { data } = await this.axios.get<IOrderForm>(url);
         return data;
     }
+
+    async assign(): Promise<string> {
+        if (!this.orderFormId) {
+            const orderForm = await this.get();
+            this.orderFormId = orderForm.orderFormId;
+            return orderForm.orderFormId;
+        } else {
+            return this.orderFormId;
+        }
+    }
   
-    async add(orderformId: string, items: IOrderFormProductList, SalesChannel = 1): Promise<IOrderForm> {
+    async add(items: IOrderFormProductList, SalesChannel = 1): Promise<IOrderForm> {
+        const orderformId = await this.assign();
+
         const url = `/api/checkout/pub/orderForm/${orderformId}/items?sc=${SalesChannel}`;
   
         const { data }: { data: Promise<IOrderForm> } = await this.axios({
@@ -34,16 +48,17 @@ export default class VtexAPIOrderform implements IVtexApiOrderForm {
         return data;
     }
   
-    async update(orderformId: string, items: IOrderFormProductList): Promise<IOrderForm> {
+    async update(items: IOrderFormProductList): Promise<IOrderForm> {
+        const orderformId = await this.assign();
         const url = `/api/checkout/pub/orderForm/${orderformId}/items/update/`;
 
         const { data }: { data: Promise<IOrderForm> } = await this.axios({
-        method: 'patch',
-        url,
-        headers: defaultHeader,
-        data: {
-            orderItems: items,
-        },
+            method: 'patch',
+            url,
+            headers: defaultHeader,
+            data: {
+                orderItems: items,
+            },
         });
 
         return data;

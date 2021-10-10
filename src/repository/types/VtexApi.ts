@@ -16,10 +16,13 @@ export interface IVtexApiFacets {
 }
 export interface IVtexApiOrderForm {
   axios: AxiosInstance
+  orderFormId:string | null
+
   get: () => Promise<IOrderForm>
-  add: (orderformId: string, items: IOrderFormProductList, SalesChannel: number) =>
+  add: (items: IOrderFormProductList, SalesChannel: number) =>
     Promise<IOrderForm>
-  update: (orderformId: string, items: IOrderFormProductList) => Promise<IOrderForm>
+  update: (items: IOrderFormProductList) => Promise<IOrderForm>
+  assign: () => Promise<string>
 }
 export interface IVtexApiMasterData {
   axios: AxiosInstance
