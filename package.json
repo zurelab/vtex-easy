@@ -9,12 +9,14 @@
     "start": "nodemon dist/index.js",
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "pre-publish": "npm pack",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "reload": "rm -rf node_modules && yarn"
   },
   "keywords": [],
   "author": "Renan Prado <r.nanpr@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/node": "^16.10.3",
     "jest": "^27.2.5",
     "tsconfig-paths": "^3.11.0",
