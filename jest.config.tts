@@ -1,0 +1,8 @@
+export default {
+  coverageDirectory: "coverage",
+  coverageProvider: "v8",
+  collectCoverage: false,
+  collectCoverageFrom: [
+    'src/**/*.{js,ts,vue}',
+  ],
+};
