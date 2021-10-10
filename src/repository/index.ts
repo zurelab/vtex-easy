@@ -7,7 +7,7 @@ import VtexAPIFacets from './modules/VtexAPIFacets';
 import VtexAPIOrderform from './modules/VtexAPIOrderform';
 import VtexAPIMasterData from './modules/VtexAPIMasterData';
 
-export class VtexAPI implements IVtexApi {
+export default class VtexAPI implements IVtexApi {
   search:IVtexApiSearch
   facets:IVtexApiFacets
   orderform:IVtexApiOrderForm
