@@ -6,34 +6,28 @@ import IOrderFormProductList from '@model/types/vtex/orderform/OrderFormProductL
 import defaultHeader from '../defaultHeader';
 
 export default class VtexAPIOrderform implements IVtexApiOrderForm {
-    axios:AxiosInstance
-    orderFormId: string | null
+    private axios:AxiosInstance
+    orderFormId: string
+    salesChannel: number
   
-    constructor(axios: AxiosInstance, orderFormId?:string) {
+    constructor(axios: AxiosInstance, orderFormId:string, salesChannel:number = 1) {
         this.axios = axios;
-        this.orderFormId = orderFormId || null;
+        this.orderFormId = orderFormId;
+        this.salesChannel = salesChannel;
     }
     
     async get(): Promise<IOrderForm>{
-        const url = '/api/checkout/pub/orderForm/';
+        const orderformId = this.orderFormId;
+        const url = `/api/checkout/pub/orderForm/${orderformId}`;
         const { data } = await this.axios.get<IOrderForm>(url);
         return data;
     }
-
-    async assign(): Promise<string> {
-        if (!this.orderFormId) {
-            const orderForm = await this.get();
-            this.orderFormId = orderForm.orderFormId;
-            return orderForm.orderFormId;
-        } else {
-            return this.orderFormId;
-        }
-    }
   
-    async add(items: IOrderFormProductList, SalesChannel = 1): Promise<IOrderForm> {
-        const orderformId = await this.assign();
+    async add(items: IOrderFormProductList): Promise<IOrderForm> {
+        const orderformId = this.orderFormId;
+        const salesChannel = this.salesChannel;
 
-        const url = `/api/checkout/pub/orderForm/${orderformId}/items?sc=${SalesChannel}`;
+        const url = `/api/checkout/pub/orderForm/${orderformId}/items?sc=${salesChannel}`;
   
         const { data }: { data: Promise<IOrderForm> } = await this.axios({
             method: 'post',
@@ -49,8 +43,8 @@ export default class VtexAPIOrderform implements IVtexApiOrderForm {
     }
   
     async update(items: IOrderFormProductList): Promise<IOrderForm> {
-        const orderformId = await this.assign();
-        const url = `/api/checkout/pub/orderForm/${orderformId}/items/update/`;
+        const orderformId = this.orderFormId;
+        const url = `/api/checkout/pub/orderForm/${orderformId}/items`;
 
         const { data }: { data: Promise<IOrderForm> } = await this.axios({
             method: 'patch',
@@ -61,6 +55,20 @@ export default class VtexAPIOrderform implements IVtexApiOrderForm {
             },
         });
 
+        return data;
+    }
+
+    async clear(): Promise<IOrderForm> {
+        const orderformId = this.orderFormId;
+        const url = `/api/checkout/pub/orderForm/${orderformId}/items/removeAll`;
+
+        const { data }: { data: Promise<IOrderForm> } = await this.axios({
+            method: 'post',
+            url,
+            headers: defaultHeader,
+            data: {},
+        });
+  
         return data;
     }
 }

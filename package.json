@@ -1,5 +1,5 @@
 {
-  "name": "@zure/vtex-util",
+  "name": "@zure/vtex-easy",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,7 +10,8 @@
     "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
     "pre-publish": "npm pack",
     "test": "jest --watchAll",
-    "reload": "rm -rf node_modules && yarn"
+    "reload": "rm -rf node_modules && yarn",
+    "link": "npm link"
   },
   "keywords": [],
   "author": "Renan Prado <r.nanpr@gmail.com>",

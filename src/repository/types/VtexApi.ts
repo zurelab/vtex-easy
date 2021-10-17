@@ -7,32 +7,29 @@ import IOrderFormProductList from '@/models/types/vtex/orderform/OrderFormProduc
 import IMDPostResponse from '@/models/types/vtex/masterdata/PostResponse';
 
 export interface IVtexApiSearch {
-  axios: AxiosInstance
   get: (complement: string) => Promise<ISearch[]>
 }
 export interface IVtexApiFacets {
-  axios: AxiosInstance
   get: (complement: string) => Promise<IFacets>
 }
 export interface IVtexApiOrderForm {
-  axios: AxiosInstance
-  orderFormId:string | null
+  orderFormId:string
+  salesChannel:number
 
   get: () => Promise<IOrderForm>
   add: (items: IOrderFormProductList, SalesChannel: number) =>
     Promise<IOrderForm>
   update: (items: IOrderFormProductList) => Promise<IOrderForm>
-  assign: () => Promise<string>
+  clear: () => Promise<IOrderForm>
 }
 export interface IVtexApiMasterData {
-  axios: AxiosInstance
   get: (entity: string, documentId:string, fields: Array<string>) => any
   post: (entity: string, body: any) => Promise<IMDPostResponse>
   update: (entity: string, documentId:string, body: any) => void
   // TODO delete: (entity: string) => void
 }
 
-export interface IVtexApi {
+export interface IRepository {
   search: IVtexApiSearch
   facets: IVtexApiFacets,
   orderform: IVtexApiOrderForm
