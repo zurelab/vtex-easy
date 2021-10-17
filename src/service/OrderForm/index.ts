@@ -1,16 +1,13 @@
-import { AxiosInstance } from 'axios';
-import IOrderForm from '@/models/types/vtex/orderform/Index';
-import IOrderFormProductList from '@/models/types/vtex/orderform/OrderFormProductList';
+import { IOrderformRepository } from '@/repository/types/Repository';
+import IOrderFormService from './types/index';
+import Items from './ItemsService';
 
-export default interface OrderForm {
-    orderformId: string
-    salesChannel: number
+export default class OrderFormService implements IOrderFormService {
+    // private repository:IOrderformRepository
+    items: Items
 
-    constructor(axios: AxiosInstance, orderFormId:string, salesChannel: number): void
-
-    get: () => Promise<IOrderForm>
-    add: (items: IOrderFormProductList, SalesChannel: number) =>
-        Promise<IOrderForm>
-    update: (items: IOrderFormProductList) => Promise<IOrderForm>
-    clear: () => Promise<IOrderForm>
+    constructor(OrderformRepository: IOrderformRepository) {
+        // this.repository = OrderformRepository;
+        this.items = new Items(OrderformRepository);
+    }
 }
