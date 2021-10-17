@@ -56,6 +56,7 @@ interface Item {
   tax: number
   uniqueId: string
   unitMultiplier: number
+  index?: number
 }
 
 export default Item;

@@ -1,7 +1,8 @@
 import { IOrderformRepository } from '@/repository/types/Repository';
-import IOrderForm from '@/models/types/vtex/orderform/Index';
 import IItem from '@/models/types/vtex/orderform/Item';
 import IItemService from './types/Items';
+import IOrderFormProduct from '@/models/types/vtex/orderform/OrderFormProduct';
+import IOrderFormProductList from '@/models/types/vtex/orderform/OrderFormProductList';
 
 type IItems = Array<IItem>
 
@@ -28,5 +29,37 @@ export default class Items implements IItemService {
         }
 
         return orderform.items[index];
+    }
+    async sku(skuId:number|string): Promise<IItem | null> {
+        const orderform = await this.repository.get();
+
+        if (!orderform.items.length) return null;
+
+        const selectedItem = orderform.items.find((item) => Number(item.id) === Number(skuId));
+        const selectedItemIndex = orderform.items.findIndex((item) => Number(item.id) === Number(skuId));
+
+        if (!selectedItem) return null;
+
+        return {
+            ...selectedItem,
+            index: selectedItemIndex,
+        }
+    }
+    async add(items: IOrderFormProduct | IOrderFormProductList): Promise<IItems | []> {
+        let addItems: IOrderFormProductList;
+
+        if (Array.isArray(items)) addItems = items
+        else addItems = [items];
+        
+        const orderform = await this.repository.add(addItems);
+
+        const skuList = Array.isArray(items) ? items.map((item) => item.id) : [items.id];
+        const notAdded = skuList.filter((item) => !orderform.items.some((orderformItem) => Number(orderformItem.id) === Number(item))) 
+
+        if (notAdded.length) {
+            console.warn(`[WARN] There was a problem adding an item to the cart. SKUS => ${notAdded.join()}`);
+        }
+
+        return orderform.items;
     }
 }

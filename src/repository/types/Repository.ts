@@ -17,7 +17,7 @@ export interface IOrderformRepository {
   salesChannel:number
 
   get: () => Promise<IOrderForm>
-  add: (items: IOrderFormProductList, SalesChannel: number) =>
+  add: (items: IOrderFormProductList) =>
     Promise<IOrderForm>
   update: (items: IOrderFormProductList) => Promise<IOrderForm>
   clear: () => Promise<IOrderForm>
