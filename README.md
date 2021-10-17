@@ -1,7 +1,5 @@
 # vtex-easy [pt-br]
 
-# vtex-easy [pt-br]
-
 Um pacote tipado e simplificado para trabalhar com uma abstração da API da VTEX e várias funções úteis para o dia a dia de um ecommerce.
 
 # Sumário
