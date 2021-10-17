@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import defaultHeader from '../defaultHeader';
-import { IVtexApiMasterData } from '../types/VtexApi';
+import { IVtexApiMasterData } from '../types/Repository';
 import IMDPostResponse from '@model/types/vtex/masterdata/PostResponse';
 
 export default class VtexAPIMasterData implements IVtexApiMasterData {

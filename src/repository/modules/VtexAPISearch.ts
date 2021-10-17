@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { IVtexApiSearch } from "../types/VtexApi";
+import { IVtexApiSearch } from "../types/Repository";
 import ISearch from '@model/types/vtex/search/Index';
 
 export default class VtexAPISearch implements IVtexApiSearch {

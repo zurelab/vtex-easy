@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { IVtexApiFacets } from "../types/VtexApi";
+import { IVtexApiFacets } from "../types/Repository";
 import IFacets from '@model/types/vtex/facets/Index';
 
 export default class VtexAPIFacets implements IVtexApiFacets {

@@ -12,7 +12,7 @@ export interface IVtexApiSearch {
 export interface IVtexApiFacets {
   get: (complement: string) => Promise<IFacets>
 }
-export interface IVtexApiOrderForm {
+export interface IOrderformRepository {
   orderFormId:string
   salesChannel:number
 
@@ -32,6 +32,6 @@ export interface IVtexApiMasterData {
 export interface IRepository {
   search: IVtexApiSearch
   facets: IVtexApiFacets,
-  orderform: IVtexApiOrderForm
+  orderform: IOrderformRepository
   masterdata: IVtexApiMasterData
 }

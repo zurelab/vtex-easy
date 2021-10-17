@@ -1,11 +1,11 @@
 import { AxiosInstance } from "axios";
-import { IVtexApiOrderForm } from "../types/VtexApi";
+import { IOrderformRepository } from "../types/Repository";
 import expectedOrderFormSections from '../expectedOrderFormSections';
 import IOrderForm from '@model/types/vtex/orderform/Index';
 import IOrderFormProductList from '@model/types/vtex/orderform/OrderFormProductList';
 import defaultHeader from '../defaultHeader';
 
-export default class VtexAPIOrderform implements IVtexApiOrderForm {
+export default class OrderformRepository implements IOrderformRepository {
     private axios:AxiosInstance
     orderFormId: string
     salesChannel: number
