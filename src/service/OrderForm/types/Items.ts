@@ -17,11 +17,23 @@ export default interface IOrderFormItemsService {
     // populate: () => Promise<Items | []>
 }
 
-// orderform.items.eq(0).get()
-// orderform.items.eq(0).update()
-// orderform.items.eq(0).qtda.set()
-// orderform.items.eq(0).qtda.plus()
-// orderform.items.eq(0).qtda.minus()
-// orderform.items.eq(0).remove()
-// orderform.items.eq(0).order()
+// const item = orderform.items.eq(0)
+// const item = orderform.items.sku(123)
+
+// item.get()
+// item.update()
+
+// item.qtda.set()
+// item.qtda.plus()
+// item.qtda.minus()
+// item.remove()
+
+// item.order()
+// item.toFistIndex()
+// item.toLastIndex()
+
+// orderform.items.getIndexbySku()
+// orderform.items.getSkuByIndex()
+
+
 
