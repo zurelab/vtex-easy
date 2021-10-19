@@ -16,7 +16,7 @@ export default class OrderFormService implements IOrderFormService {
 /*
 
 orderform.get()
-orderform.listen(); // orderFormUpdated.vtex
+orderform.listen(); // orderFormUpdated.vtex && orderFormListen.vtexeasy
 orderform.fetch()
 
 orderform.logout()
@@ -54,10 +54,11 @@ item.qtda.set()
 item.qtda.plus()
 item.qtda.minus()
 item.remove()
-item.order.set()
-item.order.get()
-item.toFistIndex()
-item.toLastIndex()
+
+item.ordination.set()
+item.ordination.get()
+item.ordination.toFist()
+item.ordination.toLast()
 
 item.attachment.add()
 item.attachment.remove()

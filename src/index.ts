@@ -1,7 +1,7 @@
 import './alias/index.js';
 import Repository from '@/repository';
 import OrderformRepository from '@/repository/modules/OrderformRepository';
-import OrderformService from './service/OrderForm';
+import OrderformService from './services/OrderForm';
 
 export {
     // Repositories
