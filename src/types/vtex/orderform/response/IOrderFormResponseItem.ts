@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-interface OrderFormResponseItem {
+interface IOrderFormResponseItem {
   additionalInfo: {
     brandId: string
     brandName: string
@@ -59,4 +59,4 @@ interface OrderFormResponseItem {
   index?: number
 }
 
-export default OrderFormResponseItem;
+export default IOrderFormResponseItem;

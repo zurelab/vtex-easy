@@ -1,7 +1,8 @@
 import IOrderFormRepository from './types/IOrderFormRepository';
 import IRestAdapter from './types/IRestAdapter';
 import IRestAdapterResponse from './types/IRestAdapterResponse';
-import IOrderFormAddItem from '@/types/vtex/orderform/IOrderFormAddItem';
+import IOrderFormAddItem from '@/types/vtex/orderform/request/IOrderFormAddItem';
+import IOrderFormResponse from '@/types/vtex/orderform/response/IOrderFormResponse';
 
 export default class OrderformRepository implements IOrderFormRepository {
     request: IRestAdapter
@@ -14,17 +15,24 @@ export default class OrderformRepository implements IOrderFormRepository {
         this.salesChannel = salesChannel;
     }
 
-    get<T>(): Promise<IRestAdapterResponse<T>> {
+    get(): Promise<IRestAdapterResponse<IOrderFormResponse>> {
         const url = `/api/checkout/pub/orderForm/${this.orderFormId}`;
-        return this.request.get<T>(url);
+        return this.request.get<IOrderFormResponse>(url);
     }
 
-    addItem<T>(items: IOrderFormAddItem | IOrderFormAddItem[]): Promise<IRestAdapterResponse<T>> {
+    addItem(items: IOrderFormAddItem | IOrderFormAddItem[]): Promise<IRestAdapterResponse<IOrderFormResponse>> {
         const orderformId = this.orderFormId;
         const salesChannel = this.salesChannel;
-
         const url = `/api/checkout/pub/orderForm/${orderformId}/items?sc=${salesChannel}`;
 
-        return this.request.get<T>(url);
+        let orderItems: Array<IOrderFormAddItem>;
+
+        if (Array.isArray(items)) {
+            orderItems = items;
+        } else {
+            orderItems = [items];
+        }
+
+        return this.request.post<IOrderFormResponse>(url, { orderItems });
     }
 }

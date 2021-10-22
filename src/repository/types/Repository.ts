@@ -2,7 +2,7 @@
 import { AxiosInstance } from 'axios';
 import ISearch from '@/models/types/vtex/search/Index';
 import IFacets from '@/models/types/vtex/facets/Index';
-import IOrderForm from '@/models/types/vtex/orderform/Index';
+import IOrderForm from '@model/types/vtex/orderform/Index';
 import IOrderFormProductList from '@/models/types/vtex/orderform/OrderFormProductList';
 import IMDPostResponse from '@/models/types/vtex/masterdata/PostResponse';
 

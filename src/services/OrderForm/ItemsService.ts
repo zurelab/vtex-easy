@@ -1,7 +1,7 @@
 import { IOrderformRepository } from '@/repository/types/Repository';
-import IItem from '@/models/types/vtex/orderform/Item';
+import IItem from '@model/types/vtex/orderform/Item';
 import IItemService from './types/Items';
-import IOrderFormProduct from '@/models/types/vtex/orderform/OrderFormProduct';
+import IOrderFormProduct from '@model/types/vtex/orderform/Product';
 import IOrderFormProductList from '@/models/types/vtex/orderform/OrderFormProductList';
 
 type IItems = Array<IItem>
@@ -35,8 +35,8 @@ export default class Items implements IItemService {
 
         if (!orderform.items.length) return null;
 
-        const selectedItem = orderform.items.find((item) => Number(item.id) === Number(skuId));
-        const selectedItemIndex = orderform.items.findIndex((item) => Number(item.id) === Number(skuId));
+        const selectedItem = orderform.items.find((item: { id: any; }) => Number(item.id) === Number(skuId));
+        const selectedItemIndex = orderform.items.findIndex((item: { id: any; }) => Number(item.id) === Number(skuId));
 
         if (!selectedItem) return null;
 
@@ -54,11 +54,11 @@ export default class Items implements IItemService {
         const orderform = await this.repository.add(addItems);
 
         const skuList = Array.isArray(items) ? items.map((item) => item.id) : [items.id];
-        const notAdded = skuList.filter((item) => !orderform.items.some((orderformItem) => Number(orderformItem.id) === Number(item))) 
+        // const notAdded = skuList.filter((item) => !orderform.items.some((orderformItem) => Number(orderformItem.id) === Number(item))) 
 
-        if (notAdded.length) {
-            console.warn(`[WARN] There was a problem adding an item to the cart. SKUS => ${notAdded.join()}`);
-        }
+        // if (notAdded.length) {
+        //     console.warn(`[WARN] There was a problem adding an item to the cart. SKUS => ${notAdded.join()}`);
+        // }
 
         return orderform.items;
     }

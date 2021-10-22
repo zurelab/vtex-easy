@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import Installment from './Installment';
+import Installment from './IOrderFormResponseInstallment';
 
-interface OrderFormResponseInstallmentOption {
+interface IOrderFormResponseInstallmentOption {
   bin: any
   installments: Array<Installment>
   paymentGroupName: any
@@ -11,4 +11,4 @@ interface OrderFormResponseInstallmentOption {
   value: number
 }
 
-export default OrderFormResponseInstallmentOption;
+export default IOrderFormResponseInstallmentOption;

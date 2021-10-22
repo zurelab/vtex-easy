@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import MetaItem from './MetaItem';
-import Item from './Item';
-import InstallmentOption from './InstallmentOption';
-import PaymentSystem from './PaymentSystem';
-import Address from './Address';
+import MetaItem from './IOrderFormResponseMetaItem';
+import Item from './IOrderFormResponseItem';
+import InstallmentOption from './IOrderFormResponseInstallmentOption';
+import PaymentSystem from './IOrderFormResponsePaymentSystem';
+import Address from './IOrderFormResponseAddress';
 
-interface OrderFormResponse {
+interface IOrderFormResponse {
   allowManualPrice: boolean
   canEditData: boolean
   checkedInPickupPointId: any
@@ -144,4 +144,4 @@ interface OrderFormResponse {
   value: number
 }
 
-export default OrderFormResponse;
+export default IOrderFormResponse;

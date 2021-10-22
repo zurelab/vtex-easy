@@ -1,10 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import MetaItem from './MetaItem';
-import Item from './Item';
-import InstallmentOption from './InstallmentOption';
-import PaymentSystem from './PaymentSystem';
-
-interface Address {
+interface OrderFormResponseAddress {
   addressId: string
   addressType: string
   city: string
@@ -21,4 +15,4 @@ interface Address {
   street: string
 }
 
-export default Address;
+export default OrderFormResponseAddress;

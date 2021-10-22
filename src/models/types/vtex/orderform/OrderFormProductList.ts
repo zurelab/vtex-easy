@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import OrderFormProduct from './OrderFormProduct';
+import OrderFormProduct from './Product';
 
 type OrderFormProductList = Array<OrderFormProduct>;
 

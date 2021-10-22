@@ -1,6 +1,6 @@
-import IOrderForm from '@/models/types/vtex/orderform/Index';
-import Item from '@/models/types/vtex/orderform/Item';
-import IOrderFormProduct from '@/models/types/vtex/orderform/OrderFormProduct';
+import IOrderForm from '@model/types/vtex/orderform/Index';
+import Item from '@model/types/vtex/orderform/Item';
+import IOrderFormProduct from '@model/types/vtex/orderform/Product';
 import IOrderFormProductList from '@/models/types/vtex/orderform/OrderFormProductList';
 
 type Items = Array<Item>

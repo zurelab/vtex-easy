@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-interface OrderFormResponseMetaItem {
+interface IOrderFormResponseMetaItem {
   assemblyOptions: Array<any>
   detailUrl: string
   ean: string
@@ -13,4 +13,4 @@ interface OrderFormResponseMetaItem {
   skuName: string
 }
 
-export default OrderFormResponseMetaItem;
+export default IOrderFormResponseMetaItem;

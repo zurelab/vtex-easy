@@ -15,9 +15,6 @@ const axiosInstance = axios.create({ baseURL });
         foo: String
     }
 
-    const result = await orderformRepository.get<IFoo>('66aadb6ef1374e22b38cb589f1fd05c8');
-
-    console.log(result.response);
-    
+    const result = await orderformRepository.get('66aadb6ef1374e22b38cb589f1fd05c8');
     
 })()

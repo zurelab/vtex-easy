@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-interface OrderFormResponsePaymentSystem {
+interface PaymentSystem {
   availablePayments: any
   description: any
   dueDate: string
@@ -25,4 +25,4 @@ interface OrderFormResponsePaymentSystem {
   }
 }
 
-export default OrderFormResponsePaymentSystem;
+export default PaymentSystem;
