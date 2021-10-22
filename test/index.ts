@@ -1,4 +1,5 @@
-import AxiosRestAdapter from '../src/repository/adapter/AxiosRestAdapter';
+import AxiosRestAdapter from '../dist/repository/adapter/AxiosRestAdapter';
+import OrderFormRepository from '../dist/repository/OrderFormRepository';
 import axios from 'axios';
 
 
@@ -8,13 +9,15 @@ const axiosInstance = axios.create({ baseURL });
 (async () => {
 
     const adapter = new AxiosRestAdapter(axiosInstance);
+    const orderformRepository = new OrderFormRepository(adapter);
 
     interface IFoo {
         foo: String
     }
 
-    // TODO adapter.get deve retornar uma promise mapeada o then e catch
+    const result = await orderformRepository.get<IFoo>('66aadb6ef1374e22b38cb589f1fd05c8');
 
-    const result = await adapter.get<IFoo>('/api/checkout/pub/orderForm/66aadb6ef1374e22b38cb589f1fd05c8');
+    console.log(result.response);
+    
     
 })()

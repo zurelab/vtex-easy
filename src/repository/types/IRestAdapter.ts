@@ -1,10 +1,10 @@
-
 import IRestAdapterResponse from './IRestAdapterResponse';
 
+type IHeaderArray = [string, string];
 export default interface IRestAdapter {
-    get<TypeResponse>(url: string, body?: any): Promise<IRestAdapterResponse<TypeResponse>>
-    post<TypeResponse>(url: string, body?: any): Promise<IRestAdapterResponse<TypeResponse>>
-    put<TypeResponse>(url: string, body?: any): Promise<IRestAdapterResponse<TypeResponse>>
-    patch<TypeResponse>(url: string, body?: any): Promise<IRestAdapterResponse<TypeResponse>>
-    delete<TypeResponse>(url: string, body?: any): Promise<IRestAdapterResponse<TypeResponse>>
+    get<T>(url: string, body?: any, headers?: Array<IHeaderArray>): Promise<IRestAdapterResponse<T>>
+    post<T>(url: string, body?: any, headers?: Array<IHeaderArray>): Promise<IRestAdapterResponse<T>>
+    put<T>(url: string, body?: any, headers?: Array<IHeaderArray>): Promise<IRestAdapterResponse<T>>
+    patch<T>(url: string, body?: any, headers?: Array<IHeaderArray>): Promise<IRestAdapterResponse<T>>
+    delete<T>(url: string, body?: any, headers?: Array<IHeaderArray>): Promise<IRestAdapterResponse<T>>
 }

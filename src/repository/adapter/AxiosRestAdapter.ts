@@ -1,9 +1,8 @@
-import { rejects } from 'assert';
 import { AxiosInstance as IAxiosInstance } from 'axios';
-import { resolve } from 'path/posix';
 import IRestAdapter from '../types/IRestAdapter';
 import IRestAdapterResponse from '../types/IRestAdapterResponse';
 
+type IHeaderArray = [string, string];
 class AxiosRestAdapter implements IRestAdapter {
     private axios: IAxiosInstance
     
@@ -11,12 +10,40 @@ class AxiosRestAdapter implements IRestAdapter {
         this.axios = axiosInstance;
     }
 
+    private setHeaders(headers: Array<IHeaderArray>) {
+        this.axios.interceptors.request.use(
+            (config) => {
+                const DEFAULT_HEADERS:IHeaderArray[] = [
+                    ['Content-Type', 'application/json'],
+                    ['Accept', 'application/json'],
+                ];
+                
+                DEFAULT_HEADERS.concat(headers);
+
+                DEFAULT_HEADERS.forEach(header => {
+                    if (!config.headers) config.headers = {};
+                    const [KEY, VALUE] = header;
+                    config.headers[KEY] = VALUE;
+                });
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            },
+        );
+    }
+
     private mountResponse<TypeResponse>(response: TypeResponse, status: number, error: boolean, message: any) {
         return { response, status, error, message };
     }
 
-    async get<TypeResponse>(url: string, body?: any): Promise<IRestAdapterResponse<TypeResponse>> {
+    async get<TypeResponse>(url: string, body?: any, headers: Array<IHeaderArray> = []): Promise<IRestAdapterResponse<TypeResponse>> {
         const response = new Promise<IRestAdapterResponse<TypeResponse>>(async (resolve, reject) => {
+            
+            // Headers are being set by "interceptors" because of a problem creating typing rules ...
+            // in the "header" field in the Axios library.
+            this.setHeaders(headers);
+
             await this.axios.get<TypeResponse>(url, body)
                 .then(result => {
                     const responseMounted = this.mountResponse<TypeResponse>(result.data, 200, false, null);
