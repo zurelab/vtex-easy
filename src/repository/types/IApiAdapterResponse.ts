@@ -1,4 +1,4 @@
-export default interface IRestAdapterResponse<TypeResponse> {
+export default interface IApiAdapterResponse<TypeResponse> {
     response: TypeResponse
     status: number
     error: boolean

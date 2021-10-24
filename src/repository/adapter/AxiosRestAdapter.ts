@@ -1,6 +1,6 @@
 import { AxiosInstance as IAxiosInstance } from 'axios';
-import IRestAdapter from '../types/IRestAdapter';
-import IRestAdapterResponse from '../types/IRestAdapterResponse';
+import IRestAdapter from '../types/IApiAdapter';
+import IApiAdapterResponse from '../types/IApiAdapterResponse';
 
 type IHeaderArray = [string, string];
 class AxiosRestAdapter implements IRestAdapter {
@@ -37,8 +37,8 @@ class AxiosRestAdapter implements IRestAdapter {
         return { response, status, error, message };
     }
 
-    async get<TypeResponse>(url: string, body?: any, headers: Array<IHeaderArray> = []): Promise<IRestAdapterResponse<TypeResponse>> {
-        const response = new Promise<IRestAdapterResponse<TypeResponse>>(async (resolve, reject) => {
+    async get<TypeResponse>(url: string, body?: any, headers: Array<IHeaderArray> = []): Promise<IApiAdapterResponse<TypeResponse>> {
+        const response = new Promise<IApiAdapterResponse<TypeResponse>>(async (resolve, reject) => {
             
             // Headers are being set by "interceptors" because of a problem creating typing rules ...
             // in the "header" field in the Axios library.

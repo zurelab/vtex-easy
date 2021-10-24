@@ -1,4 +1,4 @@
-import AxiosRestAdapter from '../dist/repository/adapter/AxiosRestAdapter';
+import AxiosApiAdapter from '../dist/repository/adapter/AxiosApiAdapter';
 import OrderFormRepository from '../dist/repository/OrderFormRepository';
 import axios from 'axios';
 
@@ -8,13 +8,18 @@ const axiosInstance = axios.create({ baseURL });
 
 (async () => {
 
-    const adapter = new AxiosRestAdapter(axiosInstance);
-    const orderformRepository = new OrderFormRepository(adapter);
+    const adapter = new AxiosApiAdapter(axiosInstance);
 
-    interface IFoo {
-        foo: String
-    }
+    const orderformRepository = new OrderFormRepository(adapter, '66aadb6ef1374e22b38cb589f1fd05c8');
 
-    const result = await orderformRepository.get('66aadb6ef1374e22b38cb589f1fd05c8');
+    const result = await orderformRepository.get();
+
+    
+    
+    
     
 })()
+
+
+// TODO | Modificar o prototype do array para o push em orderform.items vir com a possibilidade de realmente
+// TODO | adicionar um item ao orderform

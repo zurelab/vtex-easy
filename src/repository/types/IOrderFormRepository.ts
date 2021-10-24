@@ -1,5 +1,5 @@
-import IRestAdapter from './IRestAdapter';
-import IRestAdapterResponse from './IRestAdapterResponse';
+import IRestAdapter from './IApiAdapter';
+import IApiAdapterResponse from './IApiAdapterResponse';
 import IOrderFormAddItem from '@/types/vtex/orderform/request/IOrderFormAddItem';
 import IOrderFormResponse from '@/types/vtex/orderform/response/IOrderFormResponse';
 
@@ -8,6 +8,6 @@ export default interface IOrderFormRepository {
     orderFormId: string
     salesChannel: number
 
-    get(): Promise<IRestAdapterResponse<IOrderFormResponse>>
-    addItem(items: IOrderFormAddItem | IOrderFormAddItem[]): Promise<IRestAdapterResponse<IOrderFormResponse>>
+    get(): Promise<IApiAdapterResponse<IOrderFormResponse>>
+    addItem(items: IOrderFormAddItem | IOrderFormAddItem[]): Promise<IApiAdapterResponse<IOrderFormResponse>>
 }

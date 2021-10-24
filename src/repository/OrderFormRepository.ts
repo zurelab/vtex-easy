@@ -1,6 +1,6 @@
 import IOrderFormRepository from './types/IOrderFormRepository';
-import IRestAdapter from './types/IRestAdapter';
-import IRestAdapterResponse from './types/IRestAdapterResponse';
+import IRestAdapter from './types/IApiAdapter';
+import IApiAdapterResponse from './types/IApiAdapterResponse';
 import IOrderFormAddItem from '@/types/vtex/orderform/request/IOrderFormAddItem';
 import IOrderFormResponse from '@/types/vtex/orderform/response/IOrderFormResponse';
 
@@ -15,12 +15,12 @@ export default class OrderformRepository implements IOrderFormRepository {
         this.salesChannel = salesChannel;
     }
 
-    get(): Promise<IRestAdapterResponse<IOrderFormResponse>> {
+    get(): Promise<IApiAdapterResponse<IOrderFormResponse>> {
         const url = `/api/checkout/pub/orderForm/${this.orderFormId}`;
         return this.request.get<IOrderFormResponse>(url);
     }
 
-    addItem(items: IOrderFormAddItem | IOrderFormAddItem[]): Promise<IRestAdapterResponse<IOrderFormResponse>> {
+    addItem(items: IOrderFormAddItem | IOrderFormAddItem[]): Promise<IApiAdapterResponse<IOrderFormResponse>> {
         const orderformId = this.orderFormId;
         const salesChannel = this.salesChannel;
         const url = `/api/checkout/pub/orderForm/${orderformId}/items?sc=${salesChannel}`;
